@@ -45,9 +45,7 @@ function MapControllerInner({ selectedCity }: MapControllerProps) {
   return null;
 }
 
-const MapController = dynamic(() => Promise.resolve(MapControllerInner), {
-  ssr: false,
-});
+const MapController = MapControllerInner;
 
 interface NepalLeafletMapSelectorEnhancedProps {
   selectedCity: string | null;
@@ -128,7 +126,7 @@ export default function NepalLeafletMapSelectorEnhanced({
     if (isSelected) {
       return L.icon({
         iconUrl:
-          "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-blue.png",
+          "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png",
         shadowUrl:
           "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-shadow.png",
         iconSize: [30, 48],
@@ -157,9 +155,9 @@ export default function NepalLeafletMapSelectorEnhanced({
       >
         <div className="h-[500px] flex items-center justify-center bg-gradient-to-br from-blue-50 to-purple-50">
           <div className="text-center">
-            <div className="inline-block animate-spin rounded-full h-12 w-12 border-4 border-blue-600 border-t-transparent mb-4"></div>
-            <div className="text-lg font-semibold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-              Loading Map...
+            <div className="inline-block animate-spin rounded-full h-12 w-12 border-4 border-red-600 border-t-transparent mb-4"></div>
+            <div className="text-lg font-semibold bg-gradient-to-r from-red-600 to-red-500 bg-clip-text text-transparent">
+              Loading...
             </div>
           </div>
         </div>
@@ -185,17 +183,17 @@ export default function NepalLeafletMapSelectorEnhanced({
         }`}
       >
         <h3
-          className={`text-xl font-bold mb-2 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent`}
+          className={`text-xl font-bold mb-2 bg-gradient-to-r from-red-600 to-red-500 bg-clip-text text-transparent`}
         >
-          Select a City to Explore Local NFTs
+          Select a City to Find Blood Donors
         </h3>
         {selectedCity && currentSelectedCityData && (
           <p
             className={`text-sm mt-1 ${
-              darkMode ? "text-gray-400" : "text-blue-600"
+              darkMode ? "text-gray-400" : "text-red-600"
             }`}
           >
-            Showing NFTs from:{" "}
+            Showing Donors from:{" "}
             <span className="font-semibold">{currentSelectedCityData.name}</span>
           </p>
         )}
@@ -212,7 +210,7 @@ export default function NepalLeafletMapSelectorEnhanced({
                 darkMode
                   ? "bg-gray-800/50 border-gray-700 text-white placeholder-gray-500"
                   : "bg-white border-gray-300 text-gray-800"
-              } focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all`}
+              } focus:outline-none focus:ring-2 focus:ring-red-500 transition-all`}
             />
             <span className="absolute right-3 top-2.5 text-gray-400">🔍</span>
           </div>
@@ -231,7 +229,7 @@ export default function NepalLeafletMapSelectorEnhanced({
                     handleMarkerClick(city);
                     setSearchQuery("");
                   }}
-                  className={`w-full text-left px-4 py-2 hover:bg-blue-50 transition-colors ${
+                  className={`w-full text-left px-4 py-2 hover:bg-red-50 transition-colors ${
                     darkMode ? "hover:bg-gray-700 text-gray-300" : "text-gray-800"
                   }`}
                 >
@@ -250,7 +248,7 @@ export default function NepalLeafletMapSelectorEnhanced({
               onClick={() => setMapStyle(style)}
               className={`px-3 py-1.5 rounded-full text-xs font-medium transition-all ${
                 mapStyle === style
-                  ? "bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg"
+                  ? "bg-gradient-to-r from-red-600 to-red-500 text-white shadow-lg"
                   : darkMode
                   ? "bg-gray-700 text-gray-300 hover:bg-gray-600"
                   : "bg-gray-200 text-gray-700 hover:bg-gray-300"
@@ -300,7 +298,7 @@ export default function NepalLeafletMapSelectorEnhanced({
                       📍 {city.name}
                     </div>
                     <div className="text-xs text-gray-600">
-                      Click to filter NFTs
+                      Click to filter Donors
                     </div>
                   </div>
                 </Popup>
@@ -318,16 +316,16 @@ export default function NepalLeafletMapSelectorEnhanced({
           className={`p-4 border-t backdrop-blur-sm ${
             darkMode
               ? "bg-gray-800/50 border-gray-700"
-              : "bg-blue-50/50 border-blue-200"
+              : "bg-red-50/50 border-red-200"
           }`}
         >
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             onClick={handleClearSelection}
-            className="w-full px-4 py-2.5 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg font-semibold shadow-lg hover:shadow-xl transition-all"
+            className="w-full px-4 py-2.5 bg-gradient-to-r from-red-600 to-red-500 text-white rounded-lg font-semibold shadow-lg hover:shadow-xl transition-all"
           >
-            Clear Selection (Show All NFTs)
+            Clear Selection (Show All Donors)
           </motion.button>
         </motion.div>
       )}

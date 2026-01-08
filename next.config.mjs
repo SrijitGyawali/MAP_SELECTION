@@ -10,7 +10,7 @@ const nextConfig = {
     config.resolve.alias.canvas = false;
     return config;
   },
-  transpilePackages: ["react-leaflet"],
+  transpilePackages: ["react-leaflet", "framer-motion"],
   experimental: {
     // Disable Turbopack for compatibility
   },
